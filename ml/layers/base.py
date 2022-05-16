@@ -1,3 +1,8 @@
+"""
+Base classes for different layers
+"""
+
+
 class LearnableLayer:
     def __init__(self):
         self.params = dict()

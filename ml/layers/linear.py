@@ -1,3 +1,7 @@
+"""
+Implementation of linear layer
+"""
+
 import numpy as np
 
 from ml.layers.base import LearnableLayer

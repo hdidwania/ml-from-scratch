@@ -1,3 +1,6 @@
+"""
+Gradient check to verify backprop of loss functions
+"""
 import argparse
 
 import numpy as np
