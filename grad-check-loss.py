@@ -5,7 +5,7 @@ import argparse
 
 import numpy as np
 
-from ml.layers.loss import MSELoss
+from ml.loss import MSELoss
 
 EPS = 1e-5
 

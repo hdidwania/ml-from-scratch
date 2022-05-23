@@ -3,10 +3,17 @@ Implementation of various loss functions
 """
 import numpy as np
 
-from ml.layers.base import LossLayer
+class LossBase:
+    def __init__(self):
+        self.buffer = dict()
 
+    def forward(self):
+        pass
 
-class MSELoss(LossLayer):
+    def backward(self):
+        pass
+
+class MSELoss(LossBase):
     def __init__(self):
         super().__init__()
 

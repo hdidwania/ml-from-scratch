@@ -27,14 +27,3 @@ class ActivationLayer:
 
     def backward(self):
         pass
-
-
-class LossLayer:
-    def __init__(self):
-        self.buffer = dict()
-
-    def forward(self):
-        pass
-
-    def backward(self):
-        pass
