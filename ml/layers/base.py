@@ -5,7 +5,9 @@ Base classes for different layers
 
 class LearnableLayer:
     def __init__(self):
+        self.type = "learnable"
         self.params = dict()
+        self.grad = dict()
         self.buffer = dict()
 
     def forward(self):
@@ -20,6 +22,7 @@ class LearnableLayer:
 
 class ActivationLayer:
     def __init__(self):
+        self.type = "activation"
         self.buffer = dict()
 
     def forward(self):
