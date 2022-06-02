@@ -4,6 +4,7 @@ Gradient check to verify backprop of loss functions
 import argparse
 
 import numpy as np
+from numpy.linalg import norm
 
 from ml.loss import MSELoss
 
@@ -32,10 +33,8 @@ def check_mse():
             ) / (2 * EPS)
 
     diff = dpred_man - dpred
-    print("Difference between backprop gradients and calculated gradients")
-    print(diff)
-    print("Maximum and minimum differences:")
-    print(np.min(diff), np.max(diff))
+    print("Norm of difference:")
+    print(norm(diff))
 
 
 args_to_fn = {"mse": check_mse}

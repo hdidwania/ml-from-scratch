@@ -4,6 +4,7 @@ Gradient check to verify backprop of loss functions
 import argparse
 
 import numpy as np
+from numpy.linalg import norm
 
 from ml.layers.linear import Linear
 from ml.loss import MSELoss
@@ -44,10 +45,8 @@ def check_linear():
             h[b, i] = EPS
             din_man[b, i] = (forward(x + h, y) - forward(x - h, y)) / (2 * EPS)
     diff = din_man - din
-    print("Difference between backprop gradients and calculated gradients")
-    print(diff)
-    print("Maximum and minimum differences:")
-    print(np.min(diff), np.max(diff))
+    print("Norm of difference for input:")
+    print(norm(diff))
 
     dw_man = np.zeros((in_dim, out_dim))
     for idx_in in range(in_dim):
@@ -61,10 +60,8 @@ def check_linear():
             layer.params["w"] += h
             dw_man[idx_in, idx_out] = (delta_plus - delta_minus) / (2 * EPS)
     diff = dw_man - dw
-    print("Difference between backprop gradients and calculated gradients")
-    print(diff)
-    print("Maximum and minimum differences:")
-    print(np.min(diff), np.max(diff))
+    print("Norm of difference for w:")
+    print(norm(diff))
 
     db_man = np.zeros((1, out_dim))
     for idx_out in range(out_dim):
@@ -77,10 +74,8 @@ def check_linear():
         layer.params["b"] += h
         db_man[0, idx_out] = (delta_plus - delta_minus) / (2 * EPS)
     diff = db_man - db
-    print("Difference between backprop gradients and calculated gradients")
-    print(diff)
-    print("Maximum and minimum differences:")
-    print(np.min(diff), np.max(diff))
+    print("Norm of difference for b:")
+    print(norm(diff))
 
 
 args_to_fn = {"linear": check_linear}
