@@ -3,6 +3,7 @@ Implementation of various loss functions
 """
 import numpy as np
 
+
 class LossBase:
     def __init__(self):
         self.buffer = dict()
@@ -12,6 +13,7 @@ class LossBase:
 
     def backward(self):
         pass
+
 
 class MSELoss(LossBase):
     def __init__(self):
