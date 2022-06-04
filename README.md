@@ -1,2 +1,5 @@
 # ML From Scratch
-This is an attempt to implement machine learning layers and models from scratch, using numpy.
+This repo contains my implementation of machine learning algorithms from scratch, using numpy.
+
+## Datasets Used
+- [MNIST](https://pjreddie.com/projects/mnist-in-csv/)
