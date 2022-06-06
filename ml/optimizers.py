@@ -5,6 +5,7 @@ class BaseOptimizer:
     def update(self):
         pass
 
+
 class SGD(BaseOptimizer):
     def __init__(self, lr):
         self.lr = lr
