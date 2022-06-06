@@ -28,3 +28,19 @@ class MSELoss(LossBase):
         pred, true = self.buffer["pred"], self.buffer["true"]
         b, n = pred.shape
         return (pred - true) / (b * n)
+
+
+class BCELoss(LossBase):
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, true, pred):
+        self.buffer["true"] = true
+        self.buffer["pred"] = pred
+        sample_loss = -(true * np.log(pred) + (1 - true) * np.log(1 - pred))
+        return np.mean(sample_loss)
+
+    def backward(self):
+        pred, true = self.buffer["pred"], self.buffer["true"]
+        b, n = pred.shape
+        return -(true / pred - (1 - true) / (1 - pred)) / (b * n)
