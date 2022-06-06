@@ -22,3 +22,17 @@ class Sigmoid(ActivationLayer):
 
     def sigmoid(self, x):
         return 1 / (1 + np.exp(-x))
+
+
+class ReLU(ActivationLayer):
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, x):
+        mask = np.where(x > 0, 1, 0)
+        self.buffer["mask"] = mask
+        return x * mask
+
+    def backward(self, dy):
+        mask = self.buffer["mask"]
+        return dy * mask
