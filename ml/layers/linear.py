@@ -8,10 +8,14 @@ from ml.layers.base import LearnableLayer
 
 
 class Linear(LearnableLayer):
-    def __init__(self, in_dim, out_dim):
+    def __init__(self, in_dim, out_dim, init_fn=None):
         super().__init__()
-        self.params["w"] = np.random.randn(in_dim, out_dim)
-        self.params["b"] = np.random.randn(1, out_dim)
+        if not init_fn:
+            self.params["w"] = np.random.randn(in_dim, out_dim)
+        else:
+            self.params["w"] = init_fn([in_dim, out_dim])
+
+        self.params["b"] = np.zeros([1, out_dim])
 
     def forward(self, x):
         self.buffer["x"] = x
