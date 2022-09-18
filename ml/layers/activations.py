@@ -21,7 +21,11 @@ class Sigmoid(ActivationLayer):
         return sigmoid_x * (1 - sigmoid_x) * dy
 
     def sigmoid(self, x):
-        return np.where(x >= 0, 1 / (1 + np.nan_to_num(np.exp(-x))), np.nan_to_num(np.exp(x)) / (1 + np.nan_to_num(np.exp(x))))
+        return np.where(
+            x >= 0,
+            1 / (1 + np.nan_to_num(np.exp(-x))),
+            np.nan_to_num(np.exp(x)) / (1 + np.nan_to_num(np.exp(x))),
+        )
 
 
 class ReLU(ActivationLayer):

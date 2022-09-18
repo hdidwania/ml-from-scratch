@@ -37,7 +37,10 @@ class BCELoss(LossBase):
     def forward(self, true, pred):
         self.buffer["true"] = true
         self.buffer["pred"] = pred
-        sample_loss = -(true * np.nan_to_num(np.log(pred)) + (1 - true) * np.nan_to_num(np.log(1 - pred)))
+        sample_loss = -(
+            true * np.nan_to_num(np.log(pred))
+            + (1 - true) * np.nan_to_num(np.log(1 - pred))
+        )
         return np.mean(sample_loss)
 
     def backward(self):
