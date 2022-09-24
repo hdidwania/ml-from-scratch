@@ -26,8 +26,8 @@ class MSELoss(LossBase):
 
     def backward(self):
         pred, true = self.buffer["pred"], self.buffer["true"]
-        b, n = pred.shape
-        return (pred - true) / (b * n)
+        n_points = np.prod(pred.shape)
+        return (pred - true) / n_points
 
 
 class BCELoss(LossBase):
@@ -45,5 +45,5 @@ class BCELoss(LossBase):
 
     def backward(self):
         pred, true = self.buffer["pred"], self.buffer["true"]
-        b, n = pred.shape
-        return -(true / pred - (1 - true) / (1 - pred)) / (b * n)
+        n_points = np.prod(pred.shape)
+        return -(true / pred - (1 - true) / (1 - pred)) / n_points
